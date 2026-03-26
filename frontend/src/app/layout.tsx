@@ -1,21 +1,22 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Problem Extractor | AI SaaS Engine",
-  description: "Automated B2B/B2C SaaS Validation Engine",
+  title: "Problem Extractor — AI SaaS Discovery Engine",
+  description: "Automatically find million-dollar SaaS ideas from real user complaints across 6 platforms.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#000000",
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-[#050505] text-neutral-200 min-h-screen flex selection:bg-white/20">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

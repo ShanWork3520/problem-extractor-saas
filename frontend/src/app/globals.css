@@ -1,16 +1,38 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @theme {
-  --color-amoled: #050505;
-  --color-glass: rgba(255, 255, 255, 0.03);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-surface: #000000;
+  --color-surface-raised: #111111;
+  --color-surface-hover: #161616;
+  --color-border: rgba(255, 255, 255, 0.04);
+  --color-border-hover: rgba(255, 255, 255, 0.1);
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #888888;
+  --color-text-muted: #555555;
+  --color-accent-red: #ef4444;
+  --color-accent-green: #22c55e;
+  --color-accent-amber: #f59e0b;
+  --color-accent-blue: #3b82f6;
 }
 
 @layer base {
-  body {
-    background-color: var(--color-amoled);
-    color: #f5f5f5;
-    font-family: system-ui, -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
+  * {
+    box-sizing: border-box;
   }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: #000;
+    color: #f5f5f5;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
 }

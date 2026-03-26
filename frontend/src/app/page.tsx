@@ -1,109 +1,114 @@
-"use client";
-import React from "react";
-import { Home, Lightbulb, Search, Settings, Flame, Code, Menu, Bell } from "lucide-react";
+import Sidebar from "@/components/Sidebar";
+import FeedTabs from "@/components/FeedTabs";
+import FeedCard from "@/components/FeedCard";
+import TrendingPanel from "@/components/TrendingPanel";
+import MobileNav from "@/components/MobileNav";
+import { Flame } from "lucide-react";
+
+const problems = [
+  {
+    source: "r/SaaS",
+    sourceIcon: "🔴",
+    timestamp: "2h ago",
+    text: "I am literally losing my mind manually mapping JSON webhooks in Zapier and paying \$100/mo for basic logic that should take 5 lines of code. Every time I add a new integration, I have to rebuild from scratch.",
+    painScore: 9,
+    viability: "High" as const,
+    aiIdea: "Build a lightweight, developer-first webhook router with visual JSON mapping — charge \$15/mo for unlimited flows. Target frustrated Zapier power users migrating away from no-code.",
+  },
+  {
+    source: "HackerNews",
+    sourceIcon: "🟠",
+    timestamp: "4h ago",
+    text: "It's 2026 and we still don't have a reliable automated code reviewer that actually catches security flaws before merge. Every tool I've tried either flags everything or misses the dangerous stuff entirely.",
+    painScore: 8,
+    viability: "Medium" as const,
+    aiIdea: "An AI PR reviewer fine-tuned specifically on CVE databases and OWASP patterns. Focus on security-only reviews rather than style/linting. Sell to security-conscious startups as a GitHub App.",
+  },
+  {
+    source: "Product Hunt",
+    sourceIcon: "🟤",
+    timestamp: "5h ago",
+    text: "Why is wrapping a simple React app into a desktop app still so incredibly tedious? I just want to ship on Mac, Windows, and Linux without learning 3 different build systems.",
+    painScore: 7,
+    viability: "High" as const,
+    aiIdea: "One-click cross-platform desktop wrapper for web apps. Drop in your URL or build folder, choose platforms, and get signed installers in 2 minutes. Freemium with paid code-signing.",
+  },
+  {
+    source: "r/Entrepreneur",
+    sourceIcon: "🔴",
+    timestamp: "6h ago",
+    text: "Spent 3 weeks trying to set up a proper invoicing system for my freelance clients. QuickBooks is overkill, Wave shut down, and everything else charges per invoice. I just need something dead simple.",
+    painScore: 8,
+    viability: "High" as const,
+    aiIdea: "Ultra-minimal invoicing SaaS for solo freelancers: create invoice in 30 seconds, send via link, get paid via Stripe. Free up to 10 invoices/mo, \$9/mo unlimited.",
+  },
+  {
+    source: "Quora",
+    sourceIcon: "🔵",
+    timestamp: "7h ago",
+    text: "Is there any tool that can automatically monitor my competitors' pricing pages and alert me when they change their plans? I'm tired of manually checking 15 websites every week.",
+    painScore: 7,
+    viability: "High" as const,
+    aiIdea: "Competitive pricing intelligence bot: monitor unlimited competitor pricing pages via DOM diffing, send Slack/email alerts on any change. \$29/mo for startups.",
+  },
+  {
+    source: "Indie Hackers",
+    sourceIcon: "🟢",
+    timestamp: "9h ago",
+    text: "I run a small newsletter with 5k subscribers and ConvertKit charges me \$79/mo. I don't need automations or landing pages. I literally just need to send one email per week to my list.",
+    painScore: 6,
+    viability: "Medium" as const,
+    aiIdea: "Barebones newsletter tool for creators who only send weekly dispatches. No automations, no funnels — just compose, send, done. Free up to 5k subs, \$5/mo after.",
+  },
+  {
+    source: "Google Play",
+    sourceIcon: "🟣",
+    timestamp: "11h ago",
+    text: "This expense tracker app crashes every time I try to export my data to CSV. I've been using it for 2 years and now all my financial data is basically trapped inside this broken app.",
+    painScore: 9,
+    viability: "Medium" as const,
+    aiIdea: "Data liberation SaaS: connect any app account, automatically export and back up all your data to your own cloud storage in standard formats. Insurance against vendor lock-in.",
+  },
+  {
+    source: "r/webdev",
+    sourceIcon: "🔴",
+    timestamp: "12h ago",
+    text: "Client asked me to add a simple contact form to their WordPress site. 4 hours later I'm debugging PHP mail functions, dealing with spam, and fighting with SMTP plugins. This should not be this hard.",
+    painScore: 7,
+    viability: "High" as const,
+    aiIdea: "Drop-in form backend API: paste a single script tag, get a working contact form with spam filtering, email delivery, and a submission dashboard. Free tier for 100 submissions/mo.",
+  },
+];
 
 export default function Dashboard() {
-  const problems = [
-    { source: "Reddit (/r/SaaS)", painScore: 9, viablity: "High", idea: "A unified AI webhook router to stop Zapier from charging $100/mo for simple JSON mapping.", text: "I am literally losing my mind manually mapping JSON webhooks in Zapier and paying huge fees for basic logic." },
-    { source: "HackerNews", painScore: 8, viablity: "Medium", idea: "An automated GitHub PR reviewer that actually catches security flaws before merge.", text: "It's 2026 and we still don't have a reliable code reviewer that acts like a senior dev and doesn't just complain about syntax." },
-    { source: "Product Hunt", painScore: 7, viablity: "High", idea: "One-click cross-platform desktop wrapper for Next.js apps.", text: "Why is wrapping a simple React app into Electron still so incredibly tedious? Someone just make it 1 click." }
-  ];
-
   return (
-    <div className="flex w-full h-screen overflow-hidden bg-[#050505]">
-      
-      {/* Desktop Sidebar (AMOLED Pitch Black with subtle border) */}
-      <aside className="hidden sm:flex flex-col w-64 h-full border-r border-[#ffffff0a] p-4 justify-between bg-[#000]">
-        <div>
-          <div className="flex items-center gap-3 px-2 mb-8 mt-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neutral-700 to-neutral-900 flex items-center justify-center border border-[#ffffff15]">
-              <Flame size={18} className="text-white" />
-            </div>
-            <span className="font-semibold tracking-tight text-white text-lg">SaasExtractor</span>
-          </div>
+    <div className="min-h-screen bg-black text-[#f5f5f5]">
+      <Sidebar />
+      <TrendingPanel />
+      <MobileNav />
 
-          <nav className="space-y-1">
-            <NavItem icon={<Home size={18} />} label="Live Feed" active />
-            <NavItem icon={<Lightbulb size={18} />} label="Validated Ideas" />
-            <NavItem icon={<Search size={18} />} label="Scraper Config" />
-          </nav>
-        </div>
-        
-        <NavItem icon={<Settings size={18} />} label="Settings" />
-      </aside>
-
-      {/* Main Content Area */}
-      <main className="flex-1 flex flex-col h-full bg-[#050505] relative overflow-hidden">
-        
-        {/* Mobile Header (Hidden on Desktop) */}
-        <header className="sm:hidden flex items-center justify-between p-4 border-b border-[#ffffff0a] bg-[#000]/80 backdrop-blur-md z-10 sticky top-0">
+      {/* Main Feed Column */}
+      <main className="lg:ml-[220px] xl:mr-[300px] min-h-screen border-x border-[rgba(255,255,255,0.04)]">
+        {/* Mobile Header */}
+        <header className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.04)] sticky top-0 bg-black/80 backdrop-blur-xl z-30">
           <div className="flex items-center gap-2">
-            <Flame size={20} className="text-white" />
-            <span className="font-semibold text-white">Extract</span>
+            <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center">
+              <Flame size={14} className="text-black" />
+            </div>
           </div>
-          <Menu size={20} className="text-neutral-400" />
+          <span className="text-[16px] font-bold">Problem Extractor</span>
+          <div className="w-7 h-7 rounded-full bg-[#222] flex items-center justify-center text-[11px] font-bold">S</div>
         </header>
 
-        {/* Feed Header */}
-        <div className="px-4 sm:px-8 pt-8 pb-4 border-b border-[#ffffff05]">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Real-Time Problems</h1>
-          <p className="text-neutral-500 mt-1 text-sm sm:text-base">Autonomous AI analyzing complaints across 6 major platforms.</p>
-        </div>
+        <FeedTabs />
 
-        {/* Scrollable Problem Feed */}
-        <div className="flex-1 overflow-y-auto px-4 sm:px-8 py-6 space-y-4 pb-24 sm:pb-8">
-          {problems.map((prob, i) => (
-            <div key={i} className="bg-[#ffffff03] border border-[#ffffff0a] hover:border-[#ffffff1a] transition-colors rounded-2xl p-5 sm:p-6 backdrop-blur-xl group cursor-pointer relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-mono px-2.5 py-1 bg-white/10 text-neutral-300 rounded-md uppercase tracking-wider">
-                  {prob.source}
-                </span>
-                
-                <div className="flex gap-2">
-                  <span className="flex items-center gap-1 text-xs font-semibold px-2 py-1 bg-red-500/10 text-red-400 rounded-md">
-                    Pain: <span className="text-white">{prob.painScore}/10</span>
-                  </span>
-                  <span className="flex items-center gap-1 text-xs font-semibold px-2 py-1 bg-emerald-500/10 text-emerald-400 rounded-md">
-                    <Code size={12} /> {prob.viablity} MVP
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed mb-4">"{prob.text}"</p>
-              
-              <div className="p-4 bg-[#0a0a0a] border border-[#ffffff0a] rounded-xl flex items-start gap-3">
-                <Lightbulb size={18} className="text-amber-400 mt-0.5 shrink-0" />
-                <div>
-                  <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-wider mb-1">AI Generated SaaS Idea</h4>
-                  <p className="text-white text-sm font-medium">{prob.idea}</p>
-                </div>
-              </div>
-
-            </div>
+        {/* Feed */}
+        <div className="pb-24 lg:pb-0">
+          {problems.map((p, i) => (
+            <FeedCard key={i} {...p} />
           ))}
         </div>
       </main>
-
-      {/* Mobile Bottom Navigation (Hidden on Desktop) */}
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-[#000]/90 backdrop-blur-xl border-t border-[#ffffff10] px-6 py-4 flex justify-between items-center z-50">
-        <Home size={22} className="text-white" />
-        <Lightbulb size={22} className="text-neutral-500 hover:text-white transition" />
-        <Search size={22} className="text-neutral-500 hover:text-white transition" />
-        <Settings size={22} className="text-neutral-500 hover:text-white transition" />
-      </nav>
-
-    </div>
-  );
-}
-
-function NavItem({ icon, label, active = false }: { icon: React.ReactNode, label: string, active?: boolean }) {
-  return (
-    <div className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all ${active ? 'bg-[#ffffff10] text-white' : 'text-neutral-400 hover:bg-[#ffffff05] hover:text-neutral-200'}`}>
-      {icon}
-      <span className="text-sm font-medium">{label}</span>
-      {active && <div className="ml-auto w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]"></div>}
     </div>
   );
 }
