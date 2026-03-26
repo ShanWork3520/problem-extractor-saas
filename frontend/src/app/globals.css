@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-amoled: #050505;
+  --color-glass: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-amoled);
+    color: #f5f5f5;
+    font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
