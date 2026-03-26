@@ -8,7 +8,7 @@ import { Flame } from "lucide-react";
 const problems = [
   {
     source: "r/SaaS",
-    sourceIcon: "🔴",
+    platform: "reddit",
     timestamp: "2h ago",
     text: "I am literally losing my mind manually mapping JSON webhooks in Zapier and paying \$100/mo for basic logic that should take 5 lines of code. Every time I add a new integration, I have to rebuild from scratch.",
     painScore: 9,
@@ -17,7 +17,7 @@ const problems = [
   },
   {
     source: "HackerNews",
-    sourceIcon: "🟠",
+    platform: "hackernews",
     timestamp: "4h ago",
     text: "It's 2026 and we still don't have a reliable automated code reviewer that actually catches security flaws before merge. Every tool I've tried either flags everything or misses the dangerous stuff entirely.",
     painScore: 8,
@@ -26,7 +26,7 @@ const problems = [
   },
   {
     source: "Product Hunt",
-    sourceIcon: "🟤",
+    platform: "producthunt",
     timestamp: "5h ago",
     text: "Why is wrapping a simple React app into a desktop app still so incredibly tedious? I just want to ship on Mac, Windows, and Linux without learning 3 different build systems.",
     painScore: 7,
@@ -35,7 +35,7 @@ const problems = [
   },
   {
     source: "r/Entrepreneur",
-    sourceIcon: "🔴",
+    platform: "reddit",
     timestamp: "6h ago",
     text: "Spent 3 weeks trying to set up a proper invoicing system for my freelance clients. QuickBooks is overkill, Wave shut down, and everything else charges per invoice. I just need something dead simple.",
     painScore: 8,
@@ -44,7 +44,7 @@ const problems = [
   },
   {
     source: "Quora",
-    sourceIcon: "🔵",
+    platform: "quora",
     timestamp: "7h ago",
     text: "Is there any tool that can automatically monitor my competitors' pricing pages and alert me when they change their plans? I'm tired of manually checking 15 websites every week.",
     painScore: 7,
@@ -53,7 +53,7 @@ const problems = [
   },
   {
     source: "Indie Hackers",
-    sourceIcon: "🟢",
+    platform: "indiehackers",
     timestamp: "9h ago",
     text: "I run a small newsletter with 5k subscribers and ConvertKit charges me \$79/mo. I don't need automations or landing pages. I literally just need to send one email per week to my list.",
     painScore: 6,
@@ -62,7 +62,7 @@ const problems = [
   },
   {
     source: "Google Play",
-    sourceIcon: "🟣",
+    platform: "googleplay",
     timestamp: "11h ago",
     text: "This expense tracker app crashes every time I try to export my data to CSV. I've been using it for 2 years and now all my financial data is basically trapped inside this broken app.",
     painScore: 9,
@@ -71,7 +71,7 @@ const problems = [
   },
   {
     source: "r/webdev",
-    sourceIcon: "🔴",
+    platform: "reddit",
     timestamp: "12h ago",
     text: "Client asked me to add a simple contact form to their WordPress site. 4 hours later I'm debugging PHP mail functions, dealing with spam, and fighting with SMTP plugins. This should not be this hard.",
     painScore: 7,

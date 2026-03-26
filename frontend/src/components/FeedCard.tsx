@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { Lightbulb, Bookmark, Share2, ChevronDown, ChevronUp, Flame, CheckCircle } from "lucide-react";
+import PlatformIcon from "./PlatformIcon";
 
 interface FeedCardProps {
   source: string;
-  sourceIcon: string;
+  platform: string;
   timestamp: string;
   text: string;
   painScore: number;
@@ -12,7 +13,7 @@ interface FeedCardProps {
   aiIdea: string;
 }
 
-export default function FeedCard({ source, sourceIcon, timestamp, text, painScore, viability, aiIdea }: FeedCardProps) {
+export default function FeedCard({ source, platform, timestamp, text, painScore, viability, aiIdea }: FeedCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
 
@@ -21,8 +22,8 @@ export default function FeedCard({ source, sourceIcon, timestamp, text, painScor
   return (
     <article className="px-4 py-4 border-b border-[rgba(255,255,255,0.04)] hover:bg-[#080808] transition-colors duration-150 cursor-pointer">
       {/* Header */}
-      <div className="flex items-center gap-2 mb-2.5">
-        <span className="text-[16px]">{sourceIcon}</span>
+      <div className="flex items-center gap-2.5 mb-2.5">
+        <PlatformIcon platform={platform} size={22} />
         <span className="text-[13px] font-semibold text-[#888]">{source}</span>
         <span className="text-[12px] text-[#555]">·</span>
         <span className="text-[12px] text-[#555]">{timestamp}</span>
