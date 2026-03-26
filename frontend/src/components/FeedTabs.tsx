@@ -11,29 +11,34 @@ interface FeedTabsProps {
 
 export default function FeedTabs({ active, onTabChange, platforms, activePlatform, onPlatformChange }: FeedTabsProps) {
   return (
-    <div className="sticky top-0 bg-black/80 backdrop-blur-xl z-20">
-      {/* Main tabs */}
+    <div className="sticky top-0 bg-black/90 backdrop-blur-xl z-20">
       <div className="flex border-b border-[rgba(255,255,255,0.04)]">
-        {["foryou", "trending"].map((tab) => (
-          <button key={tab} onClick={() => onTabChange(tab)}
-            className={`flex-1 py-3.5 text-[14px] font-medium transition-colors relative cursor-pointer ${
-              active === tab ? "text-white" : "text-[#888] hover:text-[#bbb]"}`}>
-            {tab === "foryou" ? "For You" : "Trending"}
-            {active === tab && <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-14 h-[3px] bg-white rounded-full" />}
+        {[
+          { key: "foryou", label: "For You" },
+          { key: "trending", label: "Most Discussed" },
+        ].map((t) => (
+          <button key={t.key} onClick={() => onTabChange(t.key)}
+            className={`flex-1 py-3 text-[13px] font-medium transition-colors relative cursor-pointer ${
+              active === t.key ? "text-white" : "text-[#666] hover:text-[#aaa]"}`}>
+            {t.label}
+            {active === t.key && <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-white rounded-full" />}
           </button>
         ))}
       </div>
-      {/* Platform filter chips */}
-      <div className="flex gap-2 px-4 py-2.5 overflow-x-auto border-b border-[rgba(255,255,255,0.04)]">
-        {["All", ...platforms].map((p) => (
-          <button key={p} onClick={() => onPlatformChange(p === "All" ? "" : p)}
-            className={`shrink-0 px-3 py-1.5 rounded-full text-[12px] font-medium transition-colors cursor-pointer border ${
-              (p === "All" && !activePlatform) || activePlatform === p
-                ? "bg-white text-black border-white"
-                : "bg-transparent text-[#888] border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)]"}`}>
-            {p}
-          </button>
-        ))}
+      {/* Platform chips */}
+      <div className="flex gap-1.5 px-4 py-2 overflow-x-auto">
+        {["All", ...platforms].map((p) => {
+          const isActive = (p === "All" && !activePlatform) || activePlatform === p;
+          return (
+            <button key={p} onClick={() => onPlatformChange(p === "All" ? "" : p)}
+              className={`shrink-0 px-2.5 py-1 rounded-md text-[11px] font-medium transition-all cursor-pointer ${
+                isActive
+                  ? "bg-white text-black"
+                  : "bg-[#111] text-[#777] hover:bg-[#1a1a1a] hover:text-[#aaa]"}`}>
+              {p}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
